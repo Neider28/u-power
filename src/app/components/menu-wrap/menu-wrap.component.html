@@ -1,0 +1,48 @@
+<nav class="menu-wrap">
+  <p-confirmDialog
+    key="logOutDialog"
+    position="top"
+    rejectButtonStyleClass="p-button-outlined"
+  />
+  <button class="current-link-btn" type="button" (click)="toggleCollapse()">
+    <span class="current-link">
+      <fa-icon [icon]="buttonIcon" class="current-link-icon"></fa-icon>
+      {{ buttonText }}
+    </span>
+    <span class="down" [class.collapse]="isCollapse">
+      <fa-icon [icon]="faChevronDown" class="menu-wrap-icon"></fa-icon>
+    </span>
+  </button>
+  <ul class="menu-wrap-list" [class.collapse]="isCollapse">
+    <li class="menu-wrap-item">
+      <a routerLink="/dashboard/booking" routerLinkActive="active">
+        <fa-icon [icon]="faCalendarDays" class="menu-wrap-icon"></fa-icon>
+        Reservar
+      </a>
+    </li>
+    <li class="menu-wrap-item">
+      <a routerLink="/dashboard/my-bookings" routerLinkActive="active">
+        <fa-icon [icon]="faBookmark" class="menu-wrap-icon"></fa-icon>
+        Mis reservas
+      </a>
+    </li>
+    <li class="menu-wrap-item">
+      <a routerLink="/dashboard/pendings" routerLinkActive="active">
+        <fa-icon [icon]="faClock" class="menu-wrap-icon"></fa-icon>
+        Pendientes
+      </a>
+    </li>
+    <li class="menu-wrap-item">
+      <a routerLink="/dashboard/profile" routerLinkActive="active">
+        <fa-icon [icon]="faUser" class="menu-wrap-icon"></fa-icon>
+        Perfil
+      </a>
+    </li>
+    <li class="menu-wrap-item">
+      <button (click)="logOut()">
+        <fa-icon [icon]="faRightFromBracket" class="menu-wrap-icon"></fa-icon>
+        Cerrar sesión
+      </button>
+    </li>
+  </ul>
+</nav>

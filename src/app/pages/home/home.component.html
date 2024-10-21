@@ -1,0 +1,25 @@
+<main class="main-container">
+  <div class="hero-container">
+    <div class="hero-content">
+      <h1>¡Potencia tu día con U Power!</h1>
+      <p>Descubre el poder de tu transformación física y mental con U Power: la plataforma definitiva para agendar tus sesiones de entrenamiento en el corazón de la comunidad universitaria.</p>
+      @if (isLoggedIn) {
+        <app-button
+          label="Reservar"
+          [icon]="'pi pi-arrow-right'"
+          [iconPos]="'right'"
+          [outlined]="true"
+          (onClick)="goDashboard()"
+        />
+      } @else {
+        <app-button
+          label="Empezar"
+          [icon]="'pi pi-arrow-right'"
+          [iconPos]="'right'"
+          [outlined]="true"
+          (onClick)="signInWithGoogle()"
+        />
+      }
+    </div>
+  </div>
+</main>

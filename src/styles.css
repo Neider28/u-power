@@ -1,1 +1,297 @@
-/* You can add global styles to this file, and also import other style files */
+@import "primeng/resources/themes/lara-dark-teal/theme.css";
+@import "primeng/resources/primeng.css";
+@import "primeicons/primeicons.css";
+
+html {
+  font-size: 62.5%;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: var(--dark-color);
+  font-size: 1.4rem;
+  color: var(--white-color);
+}
+
+h1,
+h2,
+h3,
+ul,
+p {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ul {
+  overflow-y: hidden;
+}
+
+a {
+  text-decoration: none;
+}
+
+:root {
+  --dark-color: #1B1B1B;
+  --black-color: #080808;
+  --gray-color: #0B0B0B;
+  --gray-low-color: #98A2B3;
+  --white-color: #F8F5F5;
+  --blue-primary-color: #14b8a6;
+
+  --text-lg: 1.8rem;
+  --text-xl: 2rem;
+  --text-2xl: 2.4rem;
+  --text-3xl: 3rem;
+  --text-4xl: 3.6rem;
+  --text-5xl: 4.8rem;
+  --line-height: 2rem;
+
+  --border-radius-12px: 1.2rem;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--black-color);
+  box-shadow: none;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--dark-color);
+}
+
+/* Order */
+@layer reset, primeng;
+
+/* Reset CSS */
+@layer reset {
+  button {
+    font-size: 1.4rem;
+  }
+
+  .p-button .p-button-icon-right {
+    margin-left: 1rem;
+  }
+
+  .p-button .p-button-icon-left {
+    margin-right: 1rem;
+  }
+
+  .p-button.p-button-outlined {
+    border-width: 2px;
+  }
+
+  .pi {
+    font-size: 1.4rem;
+  }
+
+  .p-icon {
+    width: 1.4rem;
+    height: 1.4rem;
+  }
+
+  .p-component {
+    font-size: 1.4rem;
+  }
+
+  .p-panel.p-panel-toggleable .p-panel-header {
+    padding: 1rem 1.8rem;
+  }
+
+  .p-panel .p-panel-content {
+    padding: 1.8rem;
+  }
+
+  .p-stepper .p-stepper-nav {
+    height: 100px;
+  }
+
+  .p-stepper .p-stepper-header.p-highlight .p-stepper-title {
+    color: var(--blue-primary-color);
+  }
+
+  .p-stepper .p-stepper-header .p-stepper-action .p-stepper-number {
+    min-width: 4rem;
+    height: 4rem;
+    font-size: 1.4rem;
+    border: 2px solid #3f3f46;
+  }
+
+  .p-stepper .p-stepper-panels {
+    padding: 1.8rem;
+    border-radius: 0.6rem;
+    border: 1px solid #424b57;
+  }
+
+  .p-calendar {
+    display: flex;
+  }
+
+  .p-input-icon-right > .p-icon-wrapper, .p-input-icon-right > i:last-of-type {
+    right: 1rem;
+    margin-top: -0.75rem;
+  }
+
+  .p-datepicker table {
+    font-size: 1.4rem;
+  }
+
+  .p-datepicker table td > span {
+    width: 4rem;
+    height: 4rem;
+  }
+
+  .p-datepicker table td.p-datepicker-today > span {
+    background: rgba(45, 212, 191, 0.16);
+  }
+
+  .p-datatable .p-datatable-thead > tr > th {
+    padding: 1.8rem 1.8rem;
+  }
+
+  .p-datatable .p-datatable-tbody > tr > td {
+    padding: 1.8rem 1.8rem;
+  }
+
+  .p-paginator {
+    padding: 1.8rem 1.8rem 1rem;
+  }
+
+  .p-datatable .p-paginator-bottom {
+    border-width: 0px 0px 0px;
+  }
+
+  .p-inputtext {
+    font-size: 1.4rem;
+  }
+
+  .p-paginator .p-dropdown {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    height: 3.5rem;
+    width: 7rem;
+  }
+
+  .p-button .p-icon-wrapper .p-button-icon-right {
+    margin-left: 0rem;
+    margin-right: 1rem;
+  }
+
+  .p-dialog .p-dialog-header .p-dialog-title {
+    font-weight: 700;
+    font-size: 1.6rem;
+  }
+
+  .p-dialog .p-dialog-footer button:first-child {
+    margin: 0 1rem 0 0;
+    width: auto;
+  }
+
+  .p-inputtext {
+    padding: 1rem 1rem;
+  }
+
+  .p-icon-field .p-inputtext {
+    padding-right: 4rem;
+  }
+
+  .p-icon-field .p-input-icon {
+    position: absolute;
+    top: 50%;
+    margin-top: -0.75rem;
+  }
+
+  .p-icon-field-right .p-input-icon:last-of-type {
+    right: 1.5rem;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .p-tag {
+    background: #2dd4bf;
+    color: #030712;
+    font-size: 1.4rem;
+    font-weight: 700;
+    padding: 0.75rem 1.25rem;
+    border-radius: 6px;
+  }
+
+  .p-tag .p-tag-icon {
+    margin-right: 0.5rem;
+    font-size: 1.4rem;
+  }
+}
+
+.panel-booking-alert {
+  width: 100%;
+  max-width: 700px;
+}
+
+.form-control {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.table-container {
+  max-width: 742px;
+  padding: 2rem;
+  background-color: var(--surface-a);
+  border-radius: var(--border-radius-12px);
+  border: 1px solid #424b57;
+}
+
+.caption-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.emptymessage-content {
+  width: 100%;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.fc .fc-button {
+  border-radius: 6px;
+}
+
+.fc .fc-daygrid-day-frame {
+  cursor: pointer;
+}
+
+.toast-container .ngx-toastr {
+  box-shadow: none !important;
+}
+
+.toast-container .ngx-toastr:hover {
+  box-shadow: none !important;
+}
+
+.toast-title {
+  font-size: var(--font-size-lg) !important;
+  margin-bottom: 5px;
+}
+
+.toast-message {
+  font-size: var(--font-size-sm) !important;
+}
+
+@media (min-width: 560px) {
+  .caption-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0px;
+  }
+}

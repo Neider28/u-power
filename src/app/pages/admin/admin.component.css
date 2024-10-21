@@ -1,0 +1,24 @@
+.admin-container {
+  width: 100%;
+  height: auto;
+  padding: 20px 0px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.admin-container .admin-content {
+  flex: 1;
+  padding: 0 20px;
+}
+
+@media (min-width: 1024px) {
+  .admin-container {
+    flex-direction: row;
+    padding-right: 20px;
+  }
+
+  .admin-container .admin-content {
+    padding: 0;
+  }
+}

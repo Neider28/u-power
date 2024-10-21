@@ -1,0 +1,36 @@
+.booking-history-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-ver-asistencias {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #424b57;
+}
+
+.form-controls-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.consultar-button-container {
+  width: 100%;
+  margin-top: 25px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+@media (min-width: 1024px) {
+  .booking-history-container {
+    align-items: center;
+  }
+}

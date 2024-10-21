@@ -1,0 +1,56 @@
+<div class="pendings-container">
+  <p-toast />
+  <p-confirmDialog
+    key="cancelarDialog"
+    position="top"
+    rejectButtonStyleClass="p-button-outlined"
+  />
+  <div class="table-container">
+    <p-table
+      [value]="pendings"
+      [paginator]="true"
+      [rows]="10"
+      [rowsPerPageOptions]="[10, 20, 30]"
+      [tableStyle]="{'min-width': '70rem'}"
+    >
+      <ng-template pTemplate="header">
+        <tr>
+          <th style="width: 6rem"></th>
+          <th>Día</th>
+          <th>Fecha</th>
+          <th>Hora</th>
+          <th>Pendiente</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-pending>
+        <tr>
+          <td>
+            <app-button
+              icon="pi pi-times"
+              (onClick)="cancelar(pending.id)"
+            >
+            </app-button>
+          </td>
+          <td>{{ pending.date | date: 'EEEE':'es-CO' }}</td>
+          <td>{{ pending.date | date: 'd \'de\' MMMM \'del\' y':'es-CO' }}</td>
+          <td>{{ pending.date | date: 'hh:mm a':'es-CO' }}</td>
+          <td>{{ pending.attend }}</td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="5">
+            <div class="emptymessage-content">
+              <p-image
+                src="../../../assets/images/Workout-rafiki.png"
+                alt="Empty"
+                width="200"
+              />
+              <p>¡Aún no tienes reservas realizadas!</p>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>

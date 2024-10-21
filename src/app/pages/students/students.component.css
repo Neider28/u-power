@@ -1,0 +1,73 @@
+.register-attendance-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-ver-asistencias {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #424b57;
+}
+
+.form-controls-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.consultar-button-container {
+  width: 100%;
+  margin-top: 25px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.profile-user-container {
+  width: 100%;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.profile-info-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+}
+
+.profile-info-container h2 {
+  font-size: 2.4rem;
+}
+
+.profile-info-container span {
+  font-size: 1.6rem;
+}
+
+.profile-info-container .email {
+  font-weight: 500;
+  color: var(--blue-primary-color);
+}
+
+.profile-user-image {
+  width: 120px;
+  height: 120px;
+  padding: 4px;
+  border-radius: 100%;
+  border: 2px solid var(--blue-primary-color);
+}
+
+@media (min-width: 1024px) {
+  .register-attendance-container {
+    align-items: center;
+  }
+}

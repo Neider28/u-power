@@ -1,0 +1,117 @@
+<div class="booking-container">
+  <p-panel header="Gimnasio UNAB" [toggleable]="true" styleClass="panel-booking-alert">
+    <div class="booking-alert-container">
+      <span>
+        <fa-icon [icon]="faClock"></fa-icon>
+        1 hora
+      </span>
+      <span>
+        <fa-icon [icon]="faLocationDot" style="font-size: 1.868rem;"></fa-icon>
+        Centro de Servicios Universitarios – CSU
+      </span>
+      <p>Seleccione un día y hora para reservar. Si tienes dudas o inconvenientes para generar tu reserva puedes comunicarte con nosotros al correo electrónico <strong>escenariosdeporte&commat;unab.edu.co</strong>.</p>
+      <p><strong>Nota:</strong> Para hacer uso de los espacios de Bienestar debes presentar tu carné UNAB.</p>
+    </div>
+  </p-panel>
+  <div class="card flex justify-content-center stepper-container">
+    <p-stepper [linear]="true" [activeStep]="activeStep">
+      <p-stepperPanel header="Ver Disponibilidad">
+        <ng-template pTemplate="content" let-nextCallback="nextCallback" let-index="index">
+          <form class="form-ver-disponibilidad" [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+            <div class="form-controls-container">
+              <div class="form-control">
+                <label for="icondisplay">Fecha y Hora</label>
+                <p-calendar
+                  formControlName="startDate"
+                  [defaultDate]="defaultDate"
+                  [iconDisplay]="'input'"
+                  [showIcon]="true"
+                  inputId="startDate"
+                  [readonlyInput]="true"
+                  [showTime]="true"
+                  [hourFormat]="'12'"
+                  [stepMinute]="60"
+                  [minDate]="minDate"
+                  [maxDate]="maxDate"
+                  (onSelect)="onDateSelect($event)"
+                />
+              </div>
+            </div>
+            <div class="stepper-buttons-group">
+              @if (isVerifyDate) {
+                <app-button
+                  label="Siguiente"
+                  icon="pi pi-arrow-right"
+                  iconPos="right"
+                  (onClick)="nextToSecondStep()"
+                />
+              } @else {
+                <app-button
+                  label="Verificar"
+                  icon="pi pi-check"
+                  iconPos="right"
+                  type="submit"
+                  [loading]="loading"
+                />
+              }
+            </div>
+          </form>
+        </ng-template>
+      </p-stepperPanel>
+      <p-stepperPanel header="Reservar">
+        <ng-template pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback" let-index="index">
+          <div class="reservar-container">
+            <h3>¿Estás seguro de que deseas reservar este horario?</h3>
+            <span>
+              <i class="pi pi-calendar"></i>
+              {{ dateFull | date: 'EEEE, d \'de\' MMMM \'del\' y':'es-CO' }}
+            </span>
+            <span>
+              <i class="pi pi-clock"></i>
+              {{ dateFull | date: 'hh:mm a':'es-CO' }}
+            </span>
+            <strong>¡Una vez confirmada, no podrás modificar la fecha y hora!</strong>
+          </div>
+          <div class="stepper-buttons-group">
+            <app-button
+              label="Atrás"
+              icon="pi pi-arrow-left"
+              (onClick)="backToFirstStep()"
+            />
+            <app-button
+              label="Siguiente"
+              icon="pi pi-arrow-right"
+              iconPos="right"
+              [loading]="loading"
+              (onClick)="createBooking()"
+            />
+          </div>
+        </ng-template>
+      </p-stepperPanel>
+      <p-stepperPanel header="Confirmación de Reserva">
+        <ng-template pTemplate="content" let-prevCallback="prevCallback" let-index="index">
+          <div class="confirmacion-container">
+            <p-image
+              src="../../../assets/images/Weights-amico.png"
+              alt="Success"
+              width="250"
+              height="250"
+            />
+            <h3>¡Reserva Confirmada!</h3>
+            <p>Hemos enviado un correo con los detalles de la reserva y te enviaremos
+              un recordatorio una hora antes de la hora seleccionada.
+            </p>
+          </div>
+          <div class="stepper-buttons-group">
+            <app-button
+              label="Reservar otro Horario"
+              icon="pi pi-refresh"
+              (onClick)="resetBooking()"
+            />
+          </div>
+        </ng-template>
+      </p-stepperPanel>
+    </p-stepper>
+  </div>
+</div>
+<p-toast />

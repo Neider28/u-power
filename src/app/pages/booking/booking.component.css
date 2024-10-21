@@ -1,0 +1,96 @@
+.booking-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+}
+
+.booking-container .booking-alert-container {
+  width: 100%;
+  max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.booking-container .booking-alert-container h2 {
+  font-size: var(--font-size-h2);
+  font-weight: bold;
+}
+
+.booking-container .booking-alert-container span, .reservar-container span {
+  font-size: var(--font-size-md);
+  font-weight: 500;
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+}
+
+.booking-container .booking-alert-container p {
+  font-size: var(--font-size-md);
+  font-weight: 400;
+  line-height: 2.2rem;
+  text-wrap: wrap;
+}
+
+.full-calendar-container {
+  width: 100%;
+}
+
+.stepper-container {
+  width: 100%;
+  max-width: 700px;
+}
+
+.stepper-buttons-group {
+  width: 100%;
+  margin-top: 25px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 20px;
+}
+
+.form-ver-disponibilidad {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-controls-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.reservar-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.confirmacion-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.confirmacion-container p {
+  max-width: 500px;
+  text-align: center;
+}
+
+@media (min-width: 1024px) {
+  .full-calendar-container {
+    width: 700px;
+  }
+}

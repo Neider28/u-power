@@ -1,0 +1,110 @@
+.modal-container {
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  padding: 15px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  animation: ngdialog-fadeout 0.5s;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+.modal-container.visible {
+  display: flex;
+  animation: ngdialog-fadein 0.5s forwards;
+}
+
+.modal-container.hidden {
+  animation: ngdialog-fadeout 0.5s;
+}
+
+.modal-content {
+  width: 100%;
+  height: auto;
+  position: relative;
+  padding: 18px;
+  background: var(--dark-color);
+  border-radius: var(--border-radius-12px);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  animation: ngdialog-flyin 0.35s forwards;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+.modal-content.hidden {
+  animation: ngdialog-flyout 0.35s;
+}
+
+@media (min-width: 768px) {
+  .modal-content {
+    width: 500px;
+  }
+}
+
+.modal-content__close {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.modal-content__close .close {
+  width: 20px;
+  height: 20px;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  font-size: 2rem;
+  color: var(--white-color);
+  cursor: pointer;
+}
+
+@keyframes ngdialog-fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes ngdialog-fadeout {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes ngdialog-flyin {
+  0% {
+    top: -2.5rem;
+    opacity: 0;
+  }
+  100% {
+    top: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes ngdialog-flyout {
+  0% {
+    top: 0;
+    opacity: 1;
+  }
+  100% {
+    top: -2.5rem;
+    opacity: 0;
+  }
+}

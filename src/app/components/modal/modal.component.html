@@ -1,0 +1,10 @@
+<div class="modal-container" [class]="{ 'visible': visible, 'hidden': closing }">
+  <div class="modal-content" [class]="{ 'hidden': closing }">
+    <div class="modal-content__close">
+      <button type="button" class="close" (click)="close()">
+        <fa-icon [icon]="faXmark"></fa-icon>
+      </button>
+    </div>
+    <ng-content></ng-content>
+  </div>
+</div>

@@ -1,0 +1,122 @@
+<div class="register-attendance-container">
+  <p-toast />
+  <p-confirmDialog
+    key="cancelarDialog"
+    position="top"
+    rejectButtonStyleClass="p-button-outlined"
+  />
+  <div class="table-container">
+    <form class="form-ver-asistencias" [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+      <div class="form-controls-container">
+        <div class="form-control">
+          <label for="icondisplay">Fecha y Hora</label>
+          <p-calendar
+            formControlName="startDate"
+            [defaultDate]="defaultDate"
+            [iconDisplay]="'input'"
+            [showIcon]="true"
+            inputId="startDate"
+            [readonlyInput]="true"
+            [showTime]="true"
+            [hourFormat]="'12'"
+            [stepMinute]="60"
+            [minDate]="minDate"
+            [maxDate]="maxDate"
+          />
+        </div>
+      </div>
+      <div class="consultar-button-container">
+        <p-tag [value]="bookings.length + ' reserva(s)'" severity="success" icon="pi pi-verified" />
+        <app-button
+          label="Consultar"
+          icon="pi pi-search"
+          iconPos="right"
+          type="submit"
+          [loading]="loading"
+        />
+      </div>
+    </form>
+    <p-table
+      #dt2
+      [value]="bookings"
+      dataKey="id"
+      [paginator]="true"
+      [rows]="10"
+      [rowsPerPageOptions]="[10, 20, 30]"
+      [tableStyle]="{'min-width': '70rem'}"
+      [scrollable]="true"
+      scrollHeight="flex"
+      [globalFilterFields]="['name', 'idStudent', 'email']"
+      scrollDirection="horizontal"
+    >
+      <ng-template pTemplate="caption">
+        <div class="flex">
+          <p-iconField iconPosition="right" class="ml-auto">
+            <p-inputIcon>
+              <i class="pi pi-search"></i>
+            </p-inputIcon>
+            <input
+              pInputText
+              type="text"
+              (input)="filterTable(dt2, $event)"
+              placeholder="Buscar..."
+            />
+          </p-iconField>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <th style="width: 6rem"></th>
+          <th style="width: 6rem"></th>
+          <th style="width: 6rem">Foto</th>
+          <th>Estudiante</th>
+          <th>ID</th>
+          <th>Correo electrónico</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-booking>
+        <tr>
+          <td>
+            <app-button
+              icon="pi pi-check-circle"
+              (onClick)="attended(booking.idBooking)"
+            >
+            </app-button>
+          </td>
+          <td>
+            <app-button
+              icon="pi pi-times-circle"
+              (onClick)="noAttended(booking.idBooking)"
+            >
+            </app-button>
+          </td>
+          <td>
+            <img
+              [alt]="booking.name"
+              [src]="booking.picture"
+              width="32px"
+              style="border-radius: 100%;"
+            />
+          </td>
+          <td>{{ booking.name }}</td>
+          <td>{{ booking.idStudent }}</td>
+          <td>{{ booking.email }}</td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="6">
+            <div class="emptymessage-content">
+              <p-image
+                src="../../../assets/images/search.png"
+                alt="Empty"
+                width="200"
+              />
+              <p>¡No se encontraron reservas agendadas para la fecha y hora seleccionadas!</p>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>

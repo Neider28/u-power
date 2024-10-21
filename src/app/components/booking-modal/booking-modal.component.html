@@ -1,0 +1,17 @@
+<div class="booking-modal-container">
+  <h3>Seleccionar una hora</h3>
+  <div class="booking-items-container">
+    @for (hour of hours; track hour.id) {
+      <div class="booking-item-container">
+        <button type="button" class="hour-btn" (click)="onClickHour(hour.id)">
+          {{ hour.hour }}
+        </button>
+        @if (showConfirm === hour.id) {
+          <button type="button" class="confirm-btn" (click)="booking(hour.id)">
+            Reservar
+          </button>
+        }
+      </div>
+    }
+  </div>
+</div>

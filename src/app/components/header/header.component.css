@@ -1,0 +1,125 @@
+.header-container {
+  width: 100%;
+  height: 100px;
+  padding: 0 20px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  background-color: var(--dark-color);
+}
+
+.header-container .header-content {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-container .header-content .logo {
+  width: 100px;
+  height: 100px;
+}
+
+.header-container .header-content .burger-menu-btn {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.header-container .header-content .burger-menu-btn .burger-menu-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  color: var(--white-color);
+}
+
+.header-nav {
+  width: 80%;
+  height: 100vh;
+  padding: 40px 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  background-color: var(--gray-color);
+  z-index: 10;
+  animation: fadeInRight .4s both;
+}
+
+.header-profile {
+  width: 55px;
+  height: 55px;
+  padding: 2px;
+  border: 2px solid var(--blue-primary-color);
+  border-radius: 100%;
+}
+
+@keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  } 100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.header-nav .header-nav-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  list-style: none;
+}
+
+.header-nav .header-nav-list li {
+  cursor: pointer;
+}
+
+.header-nav .header-nav-list .nav-item-log-in {
+  padding: 10px 15px;
+  font-size: var(--font-size-md);
+  font-weight: bold;
+  color: var(--white-color);
+  text-align: center;
+  border-radius: var(--border-radius-12px);
+  background-color: var(--blue-primary-color);
+}
+
+@media (min-width: 768px) {
+  .header-container .header-content {
+    width: calc(100% - 100px);
+  }
+
+  .header-container .header-content .burger-menu-btn {
+    display: none;
+  }
+
+  .header-nav {
+    width: fit-content;
+    height: auto;
+    padding: 0;
+    display: flex;
+    position: initial;
+    background-color: transparent;
+    z-index: 0;
+    animation: none;
+  }
+
+  .header-nav .header-nav-list {
+    flex-direction: row;
+  }
+}
+
+@media (min-width: 1440px) {
+  .header-container .header-content {
+    width: 900px;
+  }
+}

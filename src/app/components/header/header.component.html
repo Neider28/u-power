@@ -1,0 +1,25 @@
+<header class="header-container">
+  <div class="header-content">
+    <a routerLink="/" style="height: 100px;">
+      <img class="logo" src="./../../../assets/images/logo-u-power.png" alt="Logo U Power">
+    </a>
+    @if (isLoggedIn) {
+      <a routerLink="/dashboard/profile" style="height: 55px;">
+        <img [src]="googleUser?.picture" class="header-profile" [alt]="googleUser?.name">
+      </a>
+    } @else {
+      <button class="burger-menu-btn" type="button" (click)="toggleNav()">
+        <fa-icon class="burger-menu-icon" [icon]="faBars"></fa-icon>
+      </button>
+      @if (isVisible && !isDesktopScren) {
+        <nav class="header-nav">
+          <app-button label="Iniciar sesión" (onClick)="signInWithGoogle()" />
+        </nav>
+      } @else if (isDesktopScren) {
+        <nav class="header-nav">
+          <app-button label="Iniciar sesión" (onClick)="signInWithGoogle()" />
+        </nav>
+      }
+    }
+  </div>
+</header>

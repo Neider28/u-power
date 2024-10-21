@@ -1,0 +1,65 @@
+.booking-modal-container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.booking-modal-container h3 {
+  font-size: var(--font-size-h3);
+  font-weight: 600;
+}
+
+.booking-modal-container .booking-items-container {
+  width: 100%;
+  height: auto;
+  max-height: 250px;
+  padding-right: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  overflow-y: auto;
+}
+
+.booking-modal-container .booking-item-container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.booking-modal-container .booking-item-container .hour-btn {
+  flex: 1;
+  height: 45px;
+  border: 2px solid var(--blue-primary-color);
+  border-radius: var(--border-radius-12px);
+  background-color: var(--dark-color);
+  font-size: var(--font-size-lg);
+  font-family: inherit;
+  font-weight: bold;
+  color: var(--white-color);
+  cursor: pointer;
+}
+
+.booking-modal-container .booking-item-container .confirm-btn {
+  animation: fadeWidth .3s both;
+  height: 45px;
+  border: none;
+  border-radius: var(--border-radius-12px);
+  background-color: var(--blue-primary-color);
+  font-size: var(--font-size-lg);
+  font-family: inherit;
+  font-weight: bold;
+  color: var(--white-color);
+  cursor: pointer;
+}
+
+@keyframes fadeWidth {
+  0% {
+    flex: 0;
+  } 100% {
+    flex: 1;
+  }
+}

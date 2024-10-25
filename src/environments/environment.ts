@@ -1,3 +1,3 @@
 export const environment = {
-  API: 'http://localhost:3000',
+  API: 'https://u-power-api-gateway.onrender.com',
 };

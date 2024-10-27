@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AuthConfig, OAuthService } from 'angular-oauth2-oidc';
 import { GoogleUserI } from '../../interfaces/GoogleUser';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, firstValueFrom } from 'rxjs';
 import { GoogleService } from '../google/google.service';
 import * as jwtDecode from 'jwt-decode';
 import { Router } from '@angular/router';
@@ -22,7 +22,7 @@ export class AuthService {
     this.initConfiguration();
   }
 
-  initConfiguration(): void {
+  async initConfiguration(): Promise<void> {
     const authConfig: AuthConfig = {
       issuer: 'https://accounts.google.com',
       strictDiscoveryDocumentValidation: false,
@@ -33,13 +33,18 @@ export class AuthService {
 
     this.oAuthService.configure(authConfig);
     this.oAuthService.setupAutomaticSilentRefresh();
-    this.oAuthService.loadDiscoveryDocumentAndTryLogin().then(() => {
+
+    // Utilizamos async/await para manejar mejor las operaciones asincrónicas
+    this.oAuthService.loadDiscoveryDocumentAndTryLogin().then(async () => {
       if (this.oAuthService.hasValidAccessToken()) {
         this.authStatusSubject.next(true);
-        this.googleService.loginGoogle({
-          token: this.oAuthService.getIdToken(),
-        }).subscribe({
-          next: (data) => {
+
+        try {
+          const data = await firstValueFrom(this.googleService.loginGoogle({
+            token: this.oAuthService.getIdToken(),
+          }));
+
+          if (data && data.access_token) {
             localStorage.setItem("access_token", data.access_token);
 
             const info: any = jwtDecode.jwtDecode(data.access_token);
@@ -49,8 +54,12 @@ export class AuthService {
             } else {
               this.router.navigate(['/dashboard']);
             }
-          },
-        });
+          } else {
+            console.error('No se recibió un token válido del backend');
+          }
+        } catch (error) {
+          console.error('Error al iniciar sesión con Google:', error);
+        }
       }
     });
   }

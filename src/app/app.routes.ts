@@ -9,6 +9,8 @@ import { AdminComponent } from './pages/admin/admin.component';
 import { RegisterAttendanceComponent } from './pages/register-attendance/register-attendance.component';
 import { BookingHistoryComponent } from './pages/booking-history/booking-history.component';
 import { StudentsComponent } from './pages/students/students.component';
+import { authGuard } from './guards/auth.guard';
+import { adminGuard } from './guards/admin.guard';
 
 export const routes: Routes = [
   {
@@ -19,6 +21,7 @@ export const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
+    canActivate: [authGuard],
     children: [
       {
         path: '',
@@ -29,6 +32,7 @@ export const routes: Routes = [
         path: 'booking',
         title: 'Reservar',
         component: BookingComponent,
+        canActivate: [authGuard],
       },
       {
         path: 'my-bookings',
@@ -50,6 +54,7 @@ export const routes: Routes = [
   {
     path: 'admin',
     component: AdminComponent,
+    canActivate: [authGuard, adminGuard],
     children: [
       {
         path: '',

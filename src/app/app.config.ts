@@ -9,11 +9,23 @@ import es from '@angular/common/locales/es';
 import { FormsModule } from '@angular/forms';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideHttpClient } from '@angular/common/http';
-import { provideOAuthClient } from "angular-oauth2-oidc";
+import { AuthConfig, provideOAuthClient } from "angular-oauth2-oidc";
 import { provideToastr } from "ngx-toastr";
 
 registerLocaleData(en);
 registerLocaleData(es);
+
+const authConfig: AuthConfig = {
+  issuer: 'https://accounts.google.com',
+  strictDiscoveryDocumentValidation: false,
+  redirectUri: window.location.origin + '/dashboard',
+  clientId: '486770348215-03d3fmdob795mihss7ds0jus23ru0vd7.apps.googleusercontent.com',
+  scope: 'openid profile email',
+  responseType: 'id_token token',
+  showDebugInformation: true,
+  sessionChecksEnabled: true,
+  clearHashAfterLogin: true,
+};
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -24,6 +36,10 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     provideHttpClient(),
     provideOAuthClient(),
+    {
+      provide: AuthConfig,
+      useValue: authConfig
+    },
     { provide: LOCALE_ID, useValue: 'es-CO' },
   ],
 };

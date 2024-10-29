@@ -82,5 +82,10 @@ export const routes: Routes = [
         component: ProfileComponent,
       },
     ]
-  }
+  },
+  {
+    path: '**',
+    redirectTo: '',
+    pathMatch: 'full',
+  },
 ];

@@ -1,17 +1,17 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../../services/auth/auth.service';
-import { GoogleUserI } from '../../interfaces/GoogleUser';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { GoogleService } from '../../services/google/google.service';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonComponent } from '../../components/atoms/Button/button.component';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { UserI } from '../../interfaces/user';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [ReactiveFormsModule, InputTextModule, ButtonComponent, ToastModule],
+  imports: [NgOptimizedImage, ReactiveFormsModule, InputTextModule, ButtonComponent, ToastModule],
   providers: [MessageService],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
@@ -19,20 +19,32 @@ import { MessageService } from 'primeng/api';
 export class ProfileComponent {
 
   constructor(
-    private authService: AuthService,
     private googleService: GoogleService,
     private messageService: MessageService,
   ) {}
 
   loading: boolean = false;
-  googleUser!: GoogleUserI | null;
+  googleUser: UserI = {
+    sub: '',
+    googleId: '',
+    email: 'example@example.com',
+    personalId: '',
+    status: '',
+    name: 'Default',
+    picture: 'https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg',
+    _id: '',
+  };
 
   profileForm = new FormGroup({
     id: new FormControl('', Validators.required),
   });
 
   ngOnInit(): void {
-    this.googleUser = this.authService.getProfile();
+    this.googleService.profile().subscribe({
+      next: (user) => {
+        this.googleUser = user;
+      },
+    });
     this.googleService.profile().subscribe({
       next: (data) => {
         this.profileForm.setValue({
@@ -50,7 +62,7 @@ export class ProfileComponent {
   onSubmit() {
     if (this.googleUser && this.profileForm.value.id) {
       this.loading = true;
-      this.googleService.updatePersonalId(this.googleUser?.sub, {
+      this.googleService.updatePersonalId(this.googleUser.sub, {
         personalId: this.profileForm.value.id,
       }).subscribe({
         next: () => {

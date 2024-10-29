@@ -1,4 +1,5 @@
 export interface UserI {
+  sub: string;
   googleId: string;
   email: string;
   personalId: string;

@@ -1,9 +1,9 @@
 <div class="profile-container">
   <p-toast />
   <div class="profile-content">
-    <img class="profile-image" [src]="googleUser?.picture" [alt]="googleUser?.name">
-    <h3>{{ googleUser?.name }}</h3>
-    <span>{{ googleUser?.email }}</span>
+    <img class="profile-image" [src]="googleUser.picture" [alt]="googleUser.name" width="120px" height="120px">
+    <h3>{{ googleUser.name }}</h3>
+    <span>{{ googleUser.email }}</span>
     <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="profile-form">
       <input
         type="text"

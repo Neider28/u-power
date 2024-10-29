@@ -23,11 +23,11 @@ export class HomeComponent {
   isLoggedIn = false;
 
   ngOnInit(): void {
-    this.isLoggedIn = this.authService.isLoggedIn();
+    this.isLoggedIn = this.authService.isAuthenticated();
   }
 
-  signInWithGoogle(): void {
-    this.authService.login();
+  async signInWithGoogle(): Promise<void> {
+    await this.authService.login();
   }
 
   goDashboard(): void {

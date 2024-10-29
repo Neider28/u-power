@@ -3,25 +3,30 @@ import { RouterLink } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from '../../services/auth/auth.service';
-import { GoogleUserI } from '../../interfaces/GoogleUser';
 import { Subscription } from 'rxjs';
 import { ButtonComponent } from '../atoms/Button/button.component';
+import { UserI } from '../../interfaces/user';
+import { NgOptimizedImage } from '@angular/common';
+import { UserService } from '../../services/user/user.service';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [FontAwesomeModule, RouterLink, ButtonComponent],
+  imports: [FontAwesomeModule, RouterLink, ButtonComponent, NgOptimizedImage],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private userService: UserService,
+  ) {}
 
   private authStatusSubscription!: Subscription;
+  private userSubscription!: Subscription;
 
   isLoggedIn = false;
-  googleUser: GoogleUserI | null = null;
+  googleUser: UserI = this.userService.getCurrentUser();
 
   isVisible = false;
   isDesktopScren = false;
@@ -33,17 +38,19 @@ export class HeaderComponent {
 
     this.authStatusSubscription = this.authService.authStatus$.subscribe((status) => {
       this.isLoggedIn = status;
-      if (this.isLoggedIn) {
-        this.googleUser = this.authService.getProfile();
-      } else {
-        this.googleUser = null;
-      }
+    });
+
+    this.userSubscription = this.userService.user$.subscribe(user => {
+      this.googleUser = user;
     });
   }
 
   ngOnDestroy(): void {
     if (this.authStatusSubscription) {
       this.authStatusSubscription.unsubscribe();
+    }
+    if (this.userSubscription) {
+      this.userSubscription.unsubscribe();
     }
   }
 

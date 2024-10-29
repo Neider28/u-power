@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { MenuAdminWrapComponent } from '../../components/menu-admin-wrap/menu-admin-wrap.component';
+import { UserService } from '../../services/user/user.service';
 
 @Component({
   selector: 'app-admin',
@@ -10,5 +11,9 @@ import { MenuAdminWrapComponent } from '../../components/menu-admin-wrap/menu-ad
   styleUrl: './admin.component.css'
 })
 export class AdminComponent {
+  private userService = inject(UserService);
 
+  ngOnInit(): void {
+    this.userService.loadUserProfile();
+  }
 }

@@ -5,7 +5,7 @@
     </a>
     @if (isLoggedIn) {
       <a routerLink="/dashboard/profile" style="height: 55px;">
-        <img [src]="googleUser?.picture" class="header-profile" [alt]="googleUser?.name">
+        <img [src]="googleUser.picture" class="header-profile" [alt]="googleUser.name" width="55px" height="55px">
       </a>
     } @else {
       <button class="burger-menu-btn" type="button" (click)="toggleNav()">

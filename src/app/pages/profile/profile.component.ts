@@ -62,7 +62,7 @@ export class ProfileComponent {
   onSubmit() {
     if (this.googleUser && this.profileForm.value.id) {
       this.loading = true;
-      this.googleService.updatePersonalId(this.googleUser.sub, {
+      this.googleService.updatePersonalId(this.googleUser.googleId, {
         personalId: this.profileForm.value.id,
       }).subscribe({
         next: () => {
